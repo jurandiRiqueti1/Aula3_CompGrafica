@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 3</title>
+    <style>
+        body{
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <script src="js/three.js"></script>
+    <script>
+        const renderer = new THREE.WebGLRenderer(); //construtor do three.js
+        renderer.setSize( window.innerWidth, window.innerHeight ); //define o tamanho da janela
+        document.body.appendChild( renderer.domElement ); //objeto do js que acessa o HTML e cria o elemento canvas
+        
+        //cria uma cena
+        const scene = new THREE.Scene();
+
+        //cria a câmera para a cena
+        const camera = new THREE.PerspectiveCamera( 45, //fov da camera
+                                                     window.innerWidth / window.innerHeight, //razão da janela
+                                                     1, //distância de corte perto
+                                                     500 //distâcnia de corte longe 
+                                                     ); 
+        
+        //define a localização da câmera
+        camera.position.set( 15, 15, 40 ); //x,y,z
+
+        //define para onde a câmera vai olhar
+        camera.lookAt( 0, 0, 0 ); //x,y,z
+
+        //cria um material para atribuir a um objeto
+        const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+
+        const points1 = [];
+
+        //define os pontos no plano cartesiano e os adiciona no vetor "points"
+        points1.push( new THREE.Vector3( - 5, 5, -5 ) ); //x,y,z
+        points1.push( new THREE.Vector3( 5, 5, -5 ) );
+        points1.push( new THREE.Vector3( 5, -5, -5 ) );
+        points1.push( new THREE.Vector3( -5, -5, -5 ) );
+
+        //cria um objeto com base no array de coordenadas
+        const geometry1 = new THREE.BufferGeometry().setFromPoints( points1 );
+
+        //cria um objeto com base nas coordenadas e o tipo de material
+        const line1 = new THREE.LineLoop( geometry1, material );
+
+        scene.add( line1 );
+
+        const points2 = [];
+
+        points2.push( new THREE.Vector3( - 5, 5, 5 ) ); //x,y,z
+        points2.push( new THREE.Vector3( 5, 5, 5 ) );
+        points2.push( new THREE.Vector3( 5, -5, 5 ) );
+        points2.push( new THREE.Vector3( -5, -5, 5 ) );
+
+        const geometry2 = new THREE.BufferGeometry().setFromPoints( points2 );
+
+        //cria um objeto com base nas coordenadas e o tipo de material
+        const line2 = new THREE.LineLoop( geometry2, material );
+
+        //adiciona a linha na cena
+        scene.add( line2 );
+
+        const points3 = [];
+
+        points3.push( new THREE.Vector3( -5, -5, -5 ) );
+        points3.push( new THREE.Vector3( -5, -5, 5 ) );
+
+        const geometry3 = new THREE.BufferGeometry().setFromPoints( points3 );
+
+        const line3 = new THREE.LineLoop( geometry3, material );
+
+        scene.add( line3 );
+
+
+        const points4 = [];
+
+        points4.push( new THREE.Vector3( 5, 5, 5 ) );
+        points4.push( new THREE.Vector3( 5, 5, -5 ) );
+
+        const geometry4 = new THREE.BufferGeometry().setFromPoints( points4 );
+
+        const line4 = new THREE.LineLoop( geometry4, material );
+
+        scene.add( line4 );
+
+
+        const points5 = [];
+
+        points5.push( new THREE.Vector3( 5, -5, -5 ) );
+        points5.push( new THREE.Vector3( 5, -5, 5 ) );
+
+        const geometry5 = new THREE.BufferGeometry().setFromPoints( points5 );
+
+        const line5 = new THREE.LineLoop( geometry5, material );
+
+        scene.add( line5 );
+
+
+        const points6 = [];
+
+        points6.push( new THREE.Vector3( -5, 5, -5 ) );
+        points6.push( new THREE.Vector3( -5, 5, 5 ) );
+
+        const geometry6 = new THREE.BufferGeometry().setFromPoints( points6 );
+
+        const line6 = new THREE.LineLoop( geometry6, material );
+
+        scene.add( line6 );
+
+        //renderiza a cena através do obejto scene e através do obejeto camera
+        renderer.render( scene, camera );
+    </script>
+
+</body>
+</html>
